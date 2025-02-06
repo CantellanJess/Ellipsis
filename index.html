@@ -12,11 +12,36 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
           crossorigin="anonymous"></script>
+
+        <style>
+            body{
+                background-color: #01212e;
+            }
+
+            h1, h2, p{
+                color: #d9d9d9;
+                text-align: center;
+            }
+
+            p{
+                color: #d9d9d9;
+                text-align:justify;
+            }
+
+            img{
+                border-radius: 10%;
+                border-color: #d9d9d9;
+                border-style: solid;
+            }
+        </style>
 <body>
     <div class="container">
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
           <div class="col-md-3 mb-2 mb-md-0">
             <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+                <div class="col-10 col-sm-8 col-lg-6">
+                    <img src="images/ellipsislogoheader.png" class="d-block mx-lg-auto img-fluid" alt="Ellipsis Logo" width="500" height="300">
+                </div>
               <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
             </a>
           </div>
@@ -35,5 +60,23 @@
         </header>
       </div>
     
+      <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
+        <div class="col-md-6 p-lg-5 mx-auto my-5">
+          <h1 class="display-3 fw-bold">Designed for engineers</h1>
+          <h3 class="fw-normal text-muted mb-3">Build anything you want with Aperture</h3>
+          <div class="d-flex gap-3 justify-content-center lead fw-normal">
+            <a class="icon-link" href="#">
+              Learn more
+              <svg class="bi"><use xlink:href="#chevron-right"/></svg>
+            </a>
+            <a class="icon-link" href="#">
+              Buy
+              <svg class="bi"><use xlink:href="#chevron-right"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="product-device shadow-sm d-none d-md-block"></div>
+        <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+      </div>
 </body>
 </html>
