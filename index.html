@@ -326,37 +326,243 @@
                 100% { transform: scaleX(1); opacity: 0; }
             }
 
-            @media (max-width: 768px) {
-                .section {
-                    padding: 50px 0;
+            /* Updated Bento Box Layout */
+            .features-container {
+                position: relative;
+                padding: 40px 0;
+            }
+
+            .bento-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(4, auto);
+                gap: 20px;
+                padding: 20px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .features-animation {
+                grid-column: 2 / 4;
+                grid-row: 2 / 4;
+                height: 400px;
+                z-index: 2;
+            }
+
+            .bento-item {
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 20px;
+                padding: 25px;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                position: relative;
+                overflow: hidden;
+                height: 100%;
+            }
+
+            /* Position each bento item */
+            .bento-item.web-dev {
+                grid-column: 1 / 3;
+                grid-row: 1 / 2;
+            }
+
+            .bento-item.social {
+                grid-column: 3 / 5;
+                grid-row: 1 / 2;
+            }
+
+            .bento-item.it-support {
+                grid-column: 1 / 2;
+                grid-row: 2 / 3;
+            }
+
+            .bento-item.digital {
+                grid-column: 1 / 2;
+                grid-row: 3 / 4;
+            }
+
+            .bento-item.cloud {
+                grid-column: 4 / 5;
+                grid-row: 2 / 3;
+            }
+
+            .bento-item.analytics {
+                grid-column: 4 / 5;
+                grid-row: 3 / 4;
+            }
+
+            .bento-item.security {
+                grid-column: 1 / 3;
+                grid-row: 4 / 5;
+            }
+
+            .bento-item.consulting {
+                grid-column: 3 / 5;
+                grid-row: 4 / 5;
+            }
+
+            .feature-icon {
+                font-size: 2rem;
+                margin-bottom: 15px;
+                color: var(--accent-color);
+            }
+
+            .feature-title {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+                color: var(--secondary-color);
+            }
+
+            .feature-description {
+                font-size: 0.9rem;
+                color: var(--secondary-color);
+                opacity: 0.8;
+            }
+
+            .feature-list {
+                list-style: none;
+                padding: 0;
+                margin: 15px 0;
+            }
+
+            .feature-list li {
+                margin: 10px 0;
+                padding-left: 20px;
+                position: relative;
+                color: var(--secondary-color);
+            }
+
+            .feature-list li::before {
+                content: '→';
+                position: absolute;
+                left: 0;
+                color: var(--accent-color);
+            }
+
+            @media (max-width: 992px) {
+                .bento-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                    grid-template-rows: auto;
                 }
-                
-                .section-title {
-                    font-size: 2rem;
-                }
-                .animated-placeholder,
-                .hero-animation,
+
                 .features-animation {
+                    grid-column: 1 / 3;
+                    grid-row: 1 / 2;
                     height: 300px;
+                    margin-bottom: 20px;
                 }
-                .node {
-                    width: 8px;
-                    height: 8px;
+
+                .bento-item {
+                    grid-column: span 1 !important;
+                    grid-row: auto !important;
                 }
-                .network-dot {
-                    width: 10px;
-                    height: 10px;
+            }
+
+            @media (max-width: 768px) {
+                .bento-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .features-animation {
+                    grid-column: 1;
+                    height: 250px;
+                }
+
+                .bento-item {
+                    grid-column: 1 !important;
+                }
+            }
+
+            /* Navbar Styles */
+            .navbar {
+                background: rgba(1, 33, 46, 0.95);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 1rem 0;
+                transition: all 0.3s ease;
+            }
+
+            .navbar.scrolled {
+                background: rgba(1, 33, 46, 0.98);
+                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .navbar-brand img {
+                height: 40px;
+                transition: transform 0.3s ease;
+            }
+
+            .navbar-brand:hover img {
+                transform: scale(1.05);
+            }
+
+            .nav-link {
+                color: var(--secondary-color) !important;
+                font-weight: 500;
+                padding: 0.5rem 1rem !important;
+                transition: all 0.3s ease;
+                position: relative;
+            }
+
+            .nav-link::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                width: 0;
+                height: 2px;
+                background: var(--accent-color);
+                transition: all 0.3s ease;
+                transform: translateX(-50%);
+            }
+
+            .nav-link:hover::after {
+                width: 80%;
+            }
+
+            .nav-link:hover {
+                color: var(--accent-color) !important;
+            }
+
+            .navbar-toggler {
+                border: none;
+                padding: 0.5rem;
+            }
+
+            .navbar-toggler:focus {
+                box-shadow: none;
+            }
+
+            .navbar-toggler-icon {
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.7)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            }
+
+            @media (max-width: 992px) {
+                .navbar-collapse {
+                    background: rgba(1, 33, 46, 0.98);
+                    padding: 1rem;
+                    border-radius: 10px;
+                    margin-top: 1rem;
+                }
+
+                .nav-link::after {
+                    display: none;
+                }
+
+                .nav-link:hover {
+                    background: rgba(255, 255, 255, 0.1);
+                    border-radius: 5px;
                 }
             }
         </style>
     </head>
     
-    <body>
+<body>
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                    <img src="images/ellipsislogoheader.png" alt="Ellipsis Logo" height="40">
+                    <img src="images/ellipsislogoheader.png" alt="Ellipsis Logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
@@ -408,7 +614,7 @@
 
         <!-- Services Section -->
         <section id="services" class="section">
-            <div class="container">
+    <div class="container">
                 <h2 class="section-title text-center" data-aos="fade-up">Our Services</h2>
                 <div class="row">
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
@@ -437,9 +643,10 @@
         <section id="features" class="section">
             <div class="container">
                 <h2 class="section-title text-center" data-aos="fade-up">Key Features</h2>
-                <div class="row">
-                    <div class="col-lg-6" data-aos="fade-right">
-                        <div class="features-animation">
+                <div class="features-container">
+                    <div class="bento-grid">
+                        <!-- Center Animation -->
+                        <div class="features-animation" data-aos="zoom-in">
                             <div class="network-grid">
                                 <div class="network-node">
                                     <div class="network-dot"></div>
@@ -482,15 +689,83 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6" data-aos="fade-left">
-                        <div class="feature-card">
-                            <h3>Feature 1</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+                        <!-- Web Development -->
+                        <div class="bento-item web-dev" data-aos="fade-right">
+                            <div class="feature-icon">🌐</div>
+                            <h3 class="feature-title">Web Development</h3>
+                            <p class="feature-description">Custom website solutions tailored to your business needs</p>
+                            <ul class="feature-list">
+                                <li>Responsive Design</li>
+                                <li>E-commerce Integration</li>
+                                <li>Content Management Systems</li>
+                                <li>SEO Optimization</li>
+                            </ul>
                         </div>
-                        <div class="feature-card">
-                            <h3>Feature 2</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+                        <!-- Social Media Management -->
+                        <div class="bento-item social" data-aos="fade-left">
+                            <div class="feature-icon">📱</div>
+                            <h3 class="feature-title">Social Media Management</h3>
+                            <p class="feature-description">Build and maintain your online presence</p>
+                            <ul class="feature-list">
+                                <li>Content Strategy</li>
+                                <li>Community Management</li>
+                            </ul>
+                        </div>
+
+                        <!-- IT Support -->
+                        <div class="bento-item it-support" data-aos="fade-right">
+                            <div class="feature-icon">🛠️</div>
+                            <h3 class="feature-title">IT Support</h3>
+                            <p class="feature-description">24/7 technical assistance and maintenance</p>
+                        </div>
+
+                        <!-- Digital Marketing -->
+                        <div class="bento-item digital" data-aos="fade-right">
+                            <div class="feature-icon">📈</div>
+                            <h3 class="feature-title">Digital Marketing</h3>
+                            <p class="feature-description">Drive growth through targeted campaigns</p>
+                        </div>
+
+                        <!-- Cloud Solutions -->
+                        <div class="bento-item cloud" data-aos="fade-left">
+                            <div class="feature-icon">☁️</div>
+                            <h3 class="feature-title">Cloud Solutions</h3>
+                            <p class="feature-description">Secure and scalable cloud infrastructure</p>
+                            <ul class="feature-list">
+                                <li>Cloud Migration</li>
+                                <li>Data Backup</li>
+                            </ul>
+                        </div>
+
+                        <!-- Business Analytics -->
+                        <div class="bento-item analytics" data-aos="fade-left">
+                            <div class="feature-icon">📊</div>
+                            <h3 class="feature-title">Business Analytics</h3>
+                            <p class="feature-description">Data-driven insights for better decisions</p>
+                        </div>
+
+                        <!-- Cybersecurity -->
+                        <div class="bento-item security" data-aos="fade-up">
+                            <div class="feature-icon">🔒</div>
+                            <h3 class="feature-title">Cybersecurity</h3>
+                            <p class="feature-description">Protect your business with advanced security solutions</p>
+                            <ul class="feature-list">
+                                <li>Threat Detection</li>
+                                <li>Security Audits</li>
+                            </ul>
+                        </div>
+
+                        <!-- Tech Consulting -->
+                        <div class="bento-item consulting" data-aos="fade-up">
+                            <div class="feature-icon">💡</div>
+                            <h3 class="feature-title">Tech Consulting</h3>
+                            <p class="feature-description">Strategic technology planning and implementation</p>
+                            <ul class="feature-list">
+                                <li>Digital Transformation</li>
+                                <li>Technology Roadmap</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -515,9 +790,9 @@
                             </div>
                             <button type="submit" class="btn btn-primary w-100">Send Message</button>
                         </form>
-                    </div>
-                </div>
-            </div>
+          </div>
+        </div>
+      </div>
         </section>
 
         <!-- Bootstrap and AOS JS -->
@@ -530,6 +805,16 @@
                 duration: 1000,
                 once: true
             });
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
         </script>
-    </body>
+</body>
 </html>
