@@ -44,7 +44,26 @@
 
             .nav-link {
                 color: var(--secondary-color) !important;
+                font-weight: 500;
+                padding: 0.5rem 1rem !important;
+                position: relative;
                 transition: color 0.3s ease;
+            }
+
+            .nav-link::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                width: 0;
+                height: 2px;
+                background: var(--accent-color);
+                transition: all 0.3s ease;
+                transform: translateX(-50%);
+            }
+
+            .nav-link:hover::after {
+                width: 80%;
             }
 
             .nav-link:hover {
@@ -477,7 +496,6 @@
                 background: rgba(1, 33, 46, 0.95);
                 backdrop-filter: blur(10px);
                 -webkit-backdrop-filter: blur(10px);
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
                 padding: 1rem 0;
                 transition: all 0.3s ease;
             }
@@ -494,34 +512,6 @@
 
             .navbar-brand:hover img {
                 transform: scale(1.05);
-            }
-
-            .nav-link {
-                color: var(--secondary-color) !important;
-                font-weight: 500;
-                padding: 0.5rem 1rem !important;
-                transition: all 0.3s ease;
-                position: relative;
-            }
-
-            .nav-link::after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: 50%;
-                width: 0;
-                height: 2px;
-                background: var(--accent-color);
-                transition: all 0.3s ease;
-                transform: translateX(-50%);
-            }
-
-            .nav-link:hover::after {
-                width: 80%;
-            }
-
-            .nav-link:hover {
-                color: var(--accent-color) !important;
             }
 
             .navbar-toggler {
@@ -543,15 +533,6 @@
                     padding: 1rem;
                     border-radius: 10px;
                     margin-top: 1rem;
-                }
-
-                .nav-link::after {
-                    display: none;
-                }
-
-                .nav-link:hover {
-                    background: rgba(255, 255, 255, 0.1);
-                    border-radius: 5px;
                 }
             }
         </style>
@@ -726,8 +707,8 @@
                             <div class="feature-icon">📈</div>
                             <h3 class="feature-title">Digital Marketing</h3>
                             <p class="feature-description">Drive growth through targeted campaigns</p>
-                        </div>
-
+          </div>
+    
                         <!-- Cloud Solutions -->
                         <div class="bento-item cloud" data-aos="fade-left">
                             <div class="feature-icon">☁️</div>
@@ -736,7 +717,7 @@
                             <ul class="feature-list">
                                 <li>Cloud Migration</li>
                                 <li>Data Backup</li>
-                            </ul>
+          </ul>
                         </div>
 
                         <!-- Business Analytics -->
@@ -744,7 +725,7 @@
                             <div class="feature-icon">📊</div>
                             <h3 class="feature-title">Business Analytics</h3>
                             <p class="feature-description">Data-driven insights for better decisions</p>
-                        </div>
+          </div>
 
                         <!-- Cybersecurity -->
                         <div class="bento-item security" data-aos="fade-up">
@@ -755,8 +736,8 @@
                                 <li>Threat Detection</li>
                                 <li>Security Audits</li>
                             </ul>
-                        </div>
-
+      </div>
+    
                         <!-- Tech Consulting -->
                         <div class="bento-item consulting" data-aos="fade-up">
                             <div class="feature-icon">💡</div>
