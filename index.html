@@ -251,23 +251,145 @@
             }
 
             .features-animation {
-                position: relative;
-                width: 100%;
-                height: 400px;
+                grid-column: 2 / 4;
+                grid-row: 2 / 4;
+                height: 100%;
+                min-height: 600px;
+                z-index: 2;
                 background: linear-gradient(45deg, var(--primary-color), #023a4d);
                 border-radius: 20px;
                 overflow: hidden;
+                position: relative;
             }
+
+            .circuit-grid {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                display: grid;
+                grid-template-columns: repeat(8, 1fr);
+                grid-template-rows: repeat(8, 1fr);
+                gap: 20px;
+                padding: 40px;
+            }
+
+            .circuit-node {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .circuit-dot {
+                width: 12px;
+                height: 12px;
+                background: var(--coral-color);
+                border-radius: 50%;
+                position: relative;
+                animation: pulse 2s ease-in-out infinite;
+            }
+
+            .circuit-dot::before {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: var(--coral-color);
+                border-radius: 50%;
+                animation: expand 2s ease-out infinite;
+            }
+
+            .circuit-line {
+                position: absolute;
+                background: var(--mint-color);
+                opacity: 0.4;
+                animation: flow 3s ease-in-out infinite;
+            }
+
+            .circuit-line.horizontal {
+                width: 100%;
+                height: 3px;
+                left: 0;
+            }
+
+            .circuit-line.vertical {
+                width: 3px;
+                height: 100%;
+                top: 0;
+            }
+
+            .circuit-line.diagonal {
+                width: 141.4%;
+                height: 3px;
+                transform-origin: left center;
+            }
+
+            .circuit-line.diagonal.right {
+                transform: rotate(45deg);
+            }
+
+            .circuit-line.diagonal.left {
+                transform: rotate(-45deg);
+            }
+
+            @keyframes pulse {
+                0%, 100% { transform: scale(1); opacity: 0.8; }
+                50% { transform: scale(1.2); opacity: 1; }
+            }
+
+            @keyframes expand {
+                0% { transform: scale(1); opacity: 0.5; }
+                100% { transform: scale(3); opacity: 0; }
+            }
+
+            @keyframes flow {
+                0% { opacity: 0.2; }
+                50% { opacity: 0.6; }
+                100% { opacity: 0.2; }
+            }
+
+            /* Update the HTML structure for the animation */
+            .features-animation .circuit-grid {
+                display: grid;
+                grid-template-columns: repeat(8, 1fr);
+                grid-template-rows: repeat(8, 1fr);
+            }
+
+            .features-animation .circuit-node:nth-child(1) { grid-column: 2; grid-row: 2; }
+            .features-animation .circuit-node:nth-child(2) { grid-column: 4; grid-row: 2; }
+            .features-animation .circuit-node:nth-child(3) { grid-column: 6; grid-row: 2; }
+            .features-animation .circuit-node:nth-child(4) { grid-column: 2; grid-row: 4; }
+            .features-animation .circuit-node:nth-child(5) { grid-column: 4; grid-row: 4; }
+            .features-animation .circuit-node:nth-child(6) { grid-column: 6; grid-row: 4; }
+            .features-animation .circuit-node:nth-child(7) { grid-column: 2; grid-row: 6; }
+            .features-animation .circuit-node:nth-child(8) { grid-column: 4; grid-row: 6; }
+            .features-animation .circuit-node:nth-child(9) { grid-column: 6; grid-row: 6; }
+
+            /* Add circuit lines between nodes */
+            .features-animation .circuit-line:nth-child(10) { grid-column: 2 / 4; grid-row: 2; }
+            .features-animation .circuit-line:nth-child(11) { grid-column: 4 / 6; grid-row: 2; }
+            .features-animation .circuit-line:nth-child(12) { grid-column: 2; grid-row: 2 / 4; }
+            .features-animation .circuit-line:nth-child(13) { grid-column: 4; grid-row: 2 / 4; }
+            .features-animation .circuit-line:nth-child(14) { grid-column: 6; grid-row: 2 / 4; }
+            .features-animation .circuit-line:nth-child(15) { grid-column: 2 / 4; grid-row: 4; }
+            .features-animation .circuit-line:nth-child(16) { grid-column: 4 / 6; grid-row: 4; }
+            .features-animation .circuit-line:nth-child(17) { grid-column: 2; grid-row: 4 / 6; }
+            .features-animation .circuit-line:nth-child(18) { grid-column: 4; grid-row: 4 / 6; }
+            .features-animation .circuit-line:nth-child(19) { grid-column: 6; grid-row: 4 / 6; }
+            .features-animation .circuit-line:nth-child(20) { grid-column: 2 / 4; grid-row: 6; }
+            .features-animation .circuit-line:nth-child(21) { grid-column: 4 / 6; grid-row: 6; }
 
             .network-grid {
                 position: absolute;
                 width: 100%;
                 height: 100%;
                 display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                grid-template-rows: repeat(3, 1fr);
-                gap: 20px;
-                padding: 20px;
+                grid-template-columns: repeat(5, 1fr);
+                grid-template-rows: repeat(5, 1fr);
+                gap: 30px;
+                padding: 40px;
             }
 
             .network-node {
@@ -280,29 +402,19 @@
             }
 
             .network-dot {
-                width: 15px;
-                height: 15px;
+                width: 20px;
+                height: 20px;
                 background: var(--coral-color);
                 border-radius: 50%;
                 position: relative;
                 animation: glow 2s ease-in-out infinite;
             }
 
-            .network-dot::before {
-                content: '';
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                background: var(--coral-color);
-                border-radius: 50%;
-                animation: expand 2s ease-out infinite;
-            }
-
             .network-line {
                 position: absolute;
-                height: 2px;
+                height: 3px;
                 background: var(--mint-color);
-                opacity: 0.2;
+                opacity: 0.3;
                 animation: connect 3s ease-in-out infinite;
             }
 
@@ -337,11 +449,6 @@
                 50% { box-shadow: 0 0 20px var(--coral-color); }
             }
 
-            @keyframes expand {
-                0% { transform: scale(1); opacity: 0.5; }
-                100% { transform: scale(2); opacity: 0; }
-            }
-
             @keyframes connect {
                 0% { transform: scaleX(0); opacity: 0; }
                 50% { opacity: 0.2; }
@@ -364,21 +471,67 @@
                 margin: 0 auto;
             }
 
-            .features-animation {
-                grid-column: 2 / 4;
-                grid-row: 2 / 4;
-                height: 400px;
-                z-index: 2;
-            }
-
             .bento-item {
                 background: rgba(255, 255, 255, 0.05);
                 border-radius: 20px;
                 padding: 25px;
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                transition: all 0.3s ease;
                 position: relative;
                 overflow: hidden;
                 height: 100%;
+                border: 1px solid transparent;
+            }
+
+            .bento-item:hover {
+                transform: translateY(-5px);
+                background: rgba(255, 255, 255, 0.08);
+                border-color: var(--mint-color);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            .bento-item:hover .feature-icon {
+                transform: scale(1.1);
+                color: var(--coral-color);
+            }
+
+            .bento-item:hover .feature-title {
+                color: var(--mint-color);
+            }
+
+            .bento-item:hover .feature-description {
+                color: var(--secondary-color);
+            }
+
+            .bento-item:hover .feature-list li::before {
+                color: var(--coral-color);
+            }
+
+            .bento-item::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(45deg, transparent, rgba(78, 205, 196, 0.1), transparent);
+                transform: translateX(-100%);
+                transition: transform 0.6s ease;
+            }
+
+            .bento-item:hover::before {
+                transform: translateX(100%);
+            }
+
+            .feature-icon {
+                transition: transform 0.3s ease, color 0.3s ease;
+            }
+
+            .feature-title {
+                transition: color 0.3s ease;
+            }
+
+            .feature-description {
+                transition: color 0.3s ease;
             }
 
             /* Position each bento item */
@@ -469,7 +622,8 @@
                 .features-animation {
                     grid-column: 1 / 3;
                     grid-row: 1 / 2;
-                    height: 300px;
+                    height: 400px;
+                    min-height: auto;
                     margin-bottom: 20px;
                 }
 
@@ -486,7 +640,7 @@
 
                 .features-animation {
                     grid-column: 1;
-                    height: 250px;
+                    height: 300px;
                 }
 
                 .bento-item {
@@ -688,46 +842,31 @@
                     <div class="bento-grid">
                         <!-- Center Animation -->
                         <div class="features-animation" data-aos="zoom-in">
-                            <div class="network-grid">
-                                <div class="network-node">
-                                    <div class="network-dot"></div>
-                                    <div class="network-line horizontal"></div>
-                                    <div class="network-line vertical"></div>
-                                </div>
-                                <div class="network-node">
-                                    <div class="network-dot"></div>
-                                    <div class="network-line horizontal"></div>
-                                    <div class="network-line vertical"></div>
-                                </div>
-                                <div class="network-node">
-                                    <div class="network-dot"></div>
-                                    <div class="network-line horizontal"></div>
-                                </div>
-                                <div class="network-node">
-                                    <div class="network-dot"></div>
-                                    <div class="network-line horizontal"></div>
-                                    <div class="network-line vertical"></div>
-                                </div>
-                                <div class="network-node">
-                                    <div class="network-dot"></div>
-                                    <div class="network-line horizontal"></div>
-                                    <div class="network-line vertical"></div>
-                                </div>
-                                <div class="network-node">
-                                    <div class="network-dot"></div>
-                                    <div class="network-line horizontal"></div>
-                                </div>
-                                <div class="network-node">
-                                    <div class="network-dot"></div>
-                                    <div class="network-line vertical"></div>
-                                </div>
-                                <div class="network-node">
-                                    <div class="network-dot"></div>
-                                    <div class="network-line vertical"></div>
-                                </div>
-                                <div class="network-node">
-                                    <div class="network-dot"></div>
-                                </div>
+                            <div class="circuit-grid">
+                                <!-- Circuit Nodes -->
+                                <div class="circuit-node"><div class="circuit-dot"></div></div>
+                                <div class="circuit-node"><div class="circuit-dot"></div></div>
+                                <div class="circuit-node"><div class="circuit-dot"></div></div>
+                                <div class="circuit-node"><div class="circuit-dot"></div></div>
+                                <div class="circuit-node"><div class="circuit-dot"></div></div>
+                                <div class="circuit-node"><div class="circuit-dot"></div></div>
+                                <div class="circuit-node"><div class="circuit-dot"></div></div>
+                                <div class="circuit-node"><div class="circuit-dot"></div></div>
+                                <div class="circuit-node"><div class="circuit-dot"></div></div>
+                                
+                                <!-- Circuit Lines -->
+                                <div class="circuit-line horizontal"></div>
+                                <div class="circuit-line horizontal"></div>
+                                <div class="circuit-line vertical"></div>
+                                <div class="circuit-line vertical"></div>
+                                <div class="circuit-line vertical"></div>
+                                <div class="circuit-line horizontal"></div>
+                                <div class="circuit-line horizontal"></div>
+                                <div class="circuit-line vertical"></div>
+                                <div class="circuit-line vertical"></div>
+                                <div class="circuit-line vertical"></div>
+                                <div class="circuit-line horizontal"></div>
+                                <div class="circuit-line horizontal"></div>
                             </div>
                         </div>
 
