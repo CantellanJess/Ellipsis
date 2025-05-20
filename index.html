@@ -6,77 +6,530 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-      </head>
-      
-      <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+        <style>
+            :root {
+                --primary-color: #01212e;
+                --secondary-color: #d9d9d9;
+                --accent-color: #007bff;
+            }
+
+            body {
+                background-color: var(--primary-color);
+                font-family: 'Inter', sans-serif;
+                scroll-behavior: smooth;
+            }
+
+            h1, h2, h3, p {
+                color: var(--secondary-color);
+            }
+
+            .section {
+                padding: 100px 0;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+            }
+
+            .hero-section {
+                background: linear-gradient(135deg, var(--primary-color) 0%, #023a4d 100%);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .hero-content {
+                position: relative;
+                z-index: 2;
+            }
+
+            .nav-link {
+                color: var(--secondary-color) !important;
+                transition: color 0.3s ease;
+            }
+
+            .nav-link:hover {
+                color: var(--accent-color) !important;
+            }
+
+            .btn-primary {
+                background-color: var(--accent-color);
+                border: none;
+                padding: 10px 25px;
+                border-radius: 25px;
+                transition: transform 0.3s ease;
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+            }
+
+            .feature-card {
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 15px;
+                padding: 30px;
+                margin: 20px 0;
+                transition: transform 0.3s ease;
+            }
+
+            .feature-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+                margin-bottom: 2rem;
+                position: relative;
+            }
+
+            .section-title::after {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 50px;
+                height: 3px;
+                background-color: var(--accent-color);
+            }
+
+            /* Animated Placeholder Styles */
+            .animated-placeholder {
+                position: relative;
+                width: 100%;
+                height: 400px;
+                background: linear-gradient(45deg, var(--primary-color), #023a4d);
+                border-radius: 20px;
+                overflow: hidden;
+            }
+
+            .animated-placeholder::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: linear-gradient(
+                    45deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.1),
+                    transparent
+                );
+                transform: rotate(45deg);
+                animation: shine 3s infinite;
+            }
+
+            .animated-placeholder::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 80%;
+                height: 80%;
+                background: radial-gradient(
+                    circle,
+                    rgba(255, 255, 255, 0.1) 0%,
+                    transparent 70%
+                );
+                animation: pulse 2s infinite;
+            }
+
+            /* Connect the Dots Animation Styles */
+            .hero-animation {
+                position: relative;
+                width: 100%;
+                height: 500px;
+                background: linear-gradient(135deg, var(--primary-color), #023a4d);
+                border-radius: 20px;
+                overflow: hidden;
+            }
+
+            .connection-grid {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .node {
+                position: absolute;
+                width: 12px;
+                height: 12px;
+                background: var(--accent-color);
+                border-radius: 50%;
+                animation: pulse-node 2s ease-in-out infinite;
+            }
+
+            .node::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: var(--accent-color);
+                border-radius: 50%;
+                animation: ripple 2s ease-out infinite;
+            }
+
+            .node:nth-child(1) { top: 20%; left: 20%; animation-delay: 0s; }
+            .node:nth-child(2) { top: 30%; left: 70%; animation-delay: 0.3s; }
+            .node:nth-child(3) { top: 60%; left: 30%; animation-delay: 0.6s; }
+            .node:nth-child(4) { top: 70%; left: 80%; animation-delay: 0.9s; }
+            .node:nth-child(5) { top: 40%; left: 50%; animation-delay: 1.2s; }
+
+            .connection-line {
+                position: absolute;
+                height: 2px;
+                background: var(--accent-color);
+                transform-origin: left center;
+                opacity: 0.3;
+                animation: draw-line 3s ease-in-out infinite;
+            }
+
+            .connection-line:nth-child(6) {
+                width: 50%;
+                top: 25%;
+                left: 20%;
+                transform: rotate(45deg);
+                animation-delay: 0s;
+            }
+
+            .connection-line:nth-child(7) {
+                width: 40%;
+                top: 45%;
+                left: 30%;
+                transform: rotate(-30deg);
+                animation-delay: 0.5s;
+            }
+
+            .connection-line:nth-child(8) {
+                width: 45%;
+                top: 65%;
+                left: 50%;
+                transform: rotate(60deg);
+                animation-delay: 1s;
+            }
+
+            .connection-line:nth-child(9) {
+                width: 35%;
+                top: 35%;
+                left: 60%;
+                transform: rotate(-45deg);
+                animation-delay: 1.5s;
+            }
+
+            .connection-line:nth-child(10) {
+                width: 55%;
+                top: 55%;
+                left: 40%;
+                transform: rotate(15deg);
+                animation-delay: 2s;
+            }
+
+            .features-animation {
+                position: relative;
+                width: 100%;
+                height: 400px;
+                background: linear-gradient(45deg, var(--primary-color), #023a4d);
+                border-radius: 20px;
+                overflow: hidden;
+            }
+
+            .network-grid {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .network-node {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .network-dot {
+                width: 15px;
+                height: 15px;
+                background: var(--accent-color);
+                border-radius: 50%;
+                position: relative;
+                animation: glow 2s ease-in-out infinite;
+            }
+
+            .network-dot::before {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: var(--accent-color);
+                border-radius: 50%;
+                animation: expand 2s ease-out infinite;
+            }
+
+            .network-line {
+                position: absolute;
+                height: 2px;
+                background: var(--accent-color);
+                opacity: 0.2;
+                animation: connect 3s ease-in-out infinite;
+            }
+
+            .network-line.horizontal {
+                width: 100%;
+                left: 0;
+            }
+
+            .network-line.vertical {
+                width: 100%;
+                transform: rotate(90deg);
+            }
+
+            @keyframes pulse-node {
+                0%, 100% { transform: scale(1); opacity: 0.8; }
+                50% { transform: scale(1.2); opacity: 1; }
+            }
+
+            @keyframes ripple {
+                0% { transform: scale(1); opacity: 0.5; }
+                100% { transform: scale(3); opacity: 0; }
+            }
+
+            @keyframes draw-line {
+                0% { width: 0; opacity: 0; }
+                50% { opacity: 0.3; }
+                100% { width: 100%; opacity: 0; }
+            }
+
+            @keyframes glow {
+                0%, 100% { box-shadow: 0 0 5px var(--accent-color); }
+                50% { box-shadow: 0 0 20px var(--accent-color); }
+            }
+
+            @keyframes expand {
+                0% { transform: scale(1); opacity: 0.5; }
+                100% { transform: scale(2); opacity: 0; }
+            }
+
+            @keyframes connect {
+                0% { transform: scaleX(0); opacity: 0; }
+                50% { opacity: 0.2; }
+                100% { transform: scaleX(1); opacity: 0; }
+            }
+
+            @media (max-width: 768px) {
+                .section {
+                    padding: 50px 0;
+                }
+                
+                .section-title {
+                    font-size: 2rem;
+                }
+                .animated-placeholder,
+                .hero-animation,
+                .features-animation {
+                    height: 300px;
+                }
+                .node {
+                    width: 8px;
+                    height: 8px;
+                }
+                .network-dot {
+                    width: 10px;
+                    height: 10px;
+                }
+            }
+        </style>
+    </head>
+    
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="images/ellipsislogoheader.png" alt="Ellipsis Logo" height="40">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    </ul>
+                    <button class="btn btn-primary ms-3">Connect</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="section hero-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 hero-content" data-aos="fade-right">
+                        <h1 class="display-3 fw-bold mb-4">Designed for engineers</h1>
+                        <h3 class="fw-normal text-muted mb-4">Build anything you want with Aperture</h3>
+                        <div class="d-flex gap-3">
+                            <a href="#features" class="btn btn-primary">Learn more</a>
+                            <a href="#contact" class="btn btn-outline-light">Get Started</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <div class="hero-animation">
+                            <div class="connection-grid">
+                                <div class="node"></div>
+                                <div class="node"></div>
+                                <div class="node"></div>
+                                <div class="node"></div>
+                                <div class="node"></div>
+                                <div class="connection-line"></div>
+                                <div class="connection-line"></div>
+                                <div class="connection-line"></div>
+                                <div class="connection-line"></div>
+                                <div class="connection-line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section">
+            <div class="container">
+                <h2 class="section-title text-center" data-aos="fade-up">Our Services</h2>
+                <div class="row">
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-card">
+                            <h3>Service 1</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-card">
+                            <h3>Service 2</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-card">
+                            <h3>Service 3</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section">
+            <div class="container">
+                <h2 class="section-title text-center" data-aos="fade-up">Key Features</h2>
+                <div class="row">
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <div class="features-animation">
+                            <div class="network-grid">
+                                <div class="network-node">
+                                    <div class="network-dot"></div>
+                                    <div class="network-line horizontal"></div>
+                                    <div class="network-line vertical"></div>
+                                </div>
+                                <div class="network-node">
+                                    <div class="network-dot"></div>
+                                    <div class="network-line horizontal"></div>
+                                    <div class="network-line vertical"></div>
+                                </div>
+                                <div class="network-node">
+                                    <div class="network-dot"></div>
+                                    <div class="network-line horizontal"></div>
+                                </div>
+                                <div class="network-node">
+                                    <div class="network-dot"></div>
+                                    <div class="network-line horizontal"></div>
+                                    <div class="network-line vertical"></div>
+                                </div>
+                                <div class="network-node">
+                                    <div class="network-dot"></div>
+                                    <div class="network-line horizontal"></div>
+                                    <div class="network-line vertical"></div>
+                                </div>
+                                <div class="network-node">
+                                    <div class="network-dot"></div>
+                                    <div class="network-line horizontal"></div>
+                                </div>
+                                <div class="network-node">
+                                    <div class="network-dot"></div>
+                                    <div class="network-line vertical"></div>
+                                </div>
+                                <div class="network-node">
+                                    <div class="network-dot"></div>
+                                    <div class="network-line vertical"></div>
+                                </div>
+                                <div class="network-node">
+                                    <div class="network-dot"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <div class="feature-card">
+                            <h3>Feature 1</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Feature 2</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title text-center" data-aos="fade-up">Get in Touch</h2>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6" data-aos="fade-up">
+                        <form class="feature-card">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Your Name">
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Your Email">
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="5" placeholder="Your Message"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bootstrap and AOS JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
           crossorigin="anonymous"></script>
-
-        <style>
-            body{
-                background-color: #01212e;
-            }
-
-            h1, h2, p{
-                color: #d9d9d9;
-                text-align: center;
-            }
-
-            p{
-                color: #d9d9d9;
-                text-align:justify;
-            }
-
-            img{
-                border-radius: 10%;
-                border-color: #d9d9d9;
-                border-style: solid;
-            }
-        </style>
-<body>
-    <div class="container">
-        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-          <div class="col-md-3 mb-2 mb-md-0">
-            <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-                <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="images/ellipsislogoheader.png" class="d-block mx-lg-auto img-fluid" alt="Ellipsis Logo" width="500" height="300">
-                </div>
-              <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
-            </a>
-          </div>
-    
-          <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="#" class="nav-link px-2">Home</a></li>
-            <li><a href="#" class="nav-link px-2">Services</a></li>
-            <li><a href="#" class="nav-link px-2">Pricing</a></li>
-            <li><a href="#" class="nav-link px-2">FAQs</a></li>
-            <li><a href="#" class="nav-link px-2">About Us</a></li>
-          </ul>
-    
-          <div class="col-md-3 text-end">
-            <button type="button" class="btn btn-primary">Connect</button>
-          </div>
-        </header>
-      </div>
-    
-      <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
-        <div class="col-md-6 p-lg-5 mx-auto my-5">
-          <h1 class="display-3 fw-bold">Designed for engineers</h1>
-          <h3 class="fw-normal text-muted mb-3">Build anything you want with Aperture</h3>
-          <div class="d-flex gap-3 justify-content-center lead fw-normal">
-            <a class="icon-link" href="#">
-              Learn more
-              <svg class="bi"><use xlink:href="#chevron-right"/></svg>
-            </a>
-            <a class="icon-link" href="#">
-              Buy
-              <svg class="bi"><use xlink:href="#chevron-right"/></svg>
-            </a>
-          </div>
-        </div>
-        <div class="product-device shadow-sm d-none d-md-block"></div>
-        <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
-      </div>
-</body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+        <script>
+            AOS.init({
+                duration: 1000,
+                once: true
+            });
+        </script>
+    </body>
 </html>
