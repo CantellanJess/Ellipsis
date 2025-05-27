@@ -90,11 +90,46 @@
                 border-radius: 15px;
                 padding: 30px;
                 margin: 20px 0;
-                transition: transform 0.3s ease;
+                transition: all 0.3s ease;
+                height: 100%;
+                border: 1px solid transparent;
             }
 
             .feature-card:hover {
-                border: 1px solid var(--mint-color);
+                transform: translateY(-5px);
+                background: rgba(255, 255, 255, 0.08);
+                border-color: var(--mint-color);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            .feature-card h3 {
+                color: var(--mint-color);
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .feature-card .feature-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .feature-card .feature-list li {
+                color: var(--secondary-color);
+                margin-bottom: 1rem;
+                padding-left: 1.5rem;
+                position: relative;
+                font-size: 1.1rem;
+                line-height: 1.6;
+                list-style-type: disc;
+            }
+
+            .feature-card .feature-list li::before {
+                display: none;
+            }
+
+            .feature-card .feature-list li:last-child {
+                margin-bottom: 0;
             }
 
             .section-title {
@@ -597,7 +632,7 @@
             .feature-list {
                 list-style: none;
                 padding: 0;
-                margin: 15px 0;
+                margin: 0;
             }
 
             .feature-list li {
@@ -721,10 +756,7 @@
             }
 
             .back-to-top:hover {
-                background-color: var(--mint-color);
-                transform: translateY(-5px);
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-                color: white;
+                background: var(--mint-color);
             }
 
             .back-to-top::before {
@@ -751,6 +783,83 @@
                 border-color: var(--mint-color);
                 box-shadow: 0 0 0 0.2rem rgba(78, 205, 196, 0.25);
             }
+
+            /* About Section Styles */
+            .about-content {
+                padding: 2rem;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 20px;
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .about-content p {
+                font-size: 1.1rem;
+                line-height: 1.8;
+                color: var(--secondary-color);
+                opacity: 0.9;
+            }
+
+            .stat-item {
+                padding: 1.5rem;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 15px;
+                transition: transform 0.3s ease;
+            }
+
+            .stat-item:hover {
+                transform: translateY(-5px);
+                background: rgba(255, 255, 255, 0.08);
+            }
+
+            .stat-item p {
+                margin: 0;
+                font-size: 1.1rem;
+                color: var(--secondary-color);
+            }
+
+            .about-image-container {
+                position: relative;
+                height: 100%;
+                min-height: 500px;
+            }
+
+            .about-image-container .circuit-grid {
+                background: rgba(1, 33, 46, 0.3);
+                border-radius: 20px;
+                padding: 2rem;
+            }
+
+            @media (max-width: 992px) {
+                .about-content {
+                    margin-bottom: 2rem;
+                }
+                
+                .about-image-container {
+                    min-height: 400px;
+                }
+            }
+
+            /* Remove all features-related styles */
+            .features-container,
+            .bento-grid,
+            .features-animation,
+            .circuit-grid,
+            .circuit-node,
+            .circuit-dot,
+            .circuit-line,
+            .bento-item,
+            .feature-icon,
+            .feature-title,
+            .feature-description {
+                display: none;
+            }
+
+            .feature-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
         </style>
     </head>
     
@@ -767,9 +876,8 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
                         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     </ul>
                     <button class="btn btn-primary ms-3">Connect</button>
@@ -783,71 +891,51 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 hero-content" data-aos="fade-right">
                         <h1 class="display-3 fw-bold mb-4">Transforming Business Through Technology</h1>
-                        <h3 class="fw-normal mb-4" style="color: var(--accent-color);">Your trusted partner in digital innovation</h3>
+                        <h3 class="fw-normal mb-4" style="color: var(--accent-color);">Tech Support & Web Services for Small Businesses Ready to Grow</h3>
                         <div class="d-flex gap-3">
                             <a href="#features" class="btn" style="background-color: var(--accent-color); color: white; padding: 10px 25px; border-radius: 25px; transition: transform 0.3s ease;">Learn more</a>
                         </div>
                     </div>
-                    <div class="col-lg-6" data-aos="fade-left">
-                        <div class="hero-animation">
-                            <div class="connection-grid">
-                                <div class="node"></div>
-                                <div class="node"></div>
-                                <div class="node"></div>
-                                <div class="node"></div>
-                                <div class="node"></div>
-                                <div class="connection-line"></div>
-                                <div class="connection-line"></div>
-                                <div class="connection-line"></div>
-                                <div class="connection-line"></div>
-                                <div class="connection-line"></div>
+                    <div class="col-lg-6" data-aos="fade-left" style="display: flex; align-items: center; min-height: 500px;">
+                        <img src="images/Animation - 1748379056357.gif" alt="Hero Animation" style="width: 100%; min-height: 400px; max-height: 500px; object-fit: cover; border-radius: 20px; box-shadow: 0 4px 24px rgba(0,0,0,0.3); background: #222; display: block; margin: 0 auto;" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section hero-section">
+            <div class="container">
+                <h2 class="section-title text-center" data-aos="fade-up">About Us</h2>
+                <div class="row align-items-center">
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <div class="about-content">
+                            <h3 class="mb-4" style="color: var(--mint-color);">Who We Are</h3>
+                            <p class="mb-4">At Ellipsis, we help small businesses create or improve their online presence with friendly, affordable tech services. Whether you're just getting started or need to upgrade, we are here to support your goals with no confusing jargon or big price tags.</p>
+                            
+                            <h3 class="mb-4" style="color: var(--mint-color);">Our Mission</h3>
+                            <p class="mb-4">To empower small businesses with the technology solutions they need to grow and succeed. We believe that every business, regardless of size, deserves access to professional IT support and web services.</p>
+                            
+                            <div class="row mt-5">
+                                <div class="col-6">
+                                    <div class="stat-item text-center">
+                                        <h4 style="color: var(--coral-color); font-size: 2.5rem;">5+</h4>
+                                        <p>Years Experience</p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="stat-item text-center">
+                                        <h4 style="color: var(--coral-color); font-size: 2.5rem;">100+</h4>
+                                        <p>Happy Clients</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services" class="section">
-    <div class="container">
-                <h2 class="section-title text-center" data-aos="fade-up">Our Services</h2>
-                <div class="row">
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="feature-card">
-                            <h3>Service 1</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="feature-card">
-                            <h3>Service 2</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                        <div class="feature-card">
-                            <h3>Service 3</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section id="features" class="section hero-section">
-            <div class="container">
-                <h2 class="section-title text-center" data-aos="fade-up">Key Features</h2>
-                <div class="features-container">
-                    <div class="bento-grid">
-                        <!-- Center Animation -->
-                        <div class="features-animation" data-aos="zoom-in">
-                            <div class="circuit-grid">
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <div class="about-image-container">
+                            <div class="circuit-grid" style="height: 500px;">
                                 <!-- Circuit Nodes -->
-                                <div class="circuit-node"><div class="circuit-dot"></div></div>
-                                <div class="circuit-node"><div class="circuit-dot"></div></div>
-                                <div class="circuit-node"><div class="circuit-dot"></div></div>
                                 <div class="circuit-node"><div class="circuit-dot"></div></div>
                                 <div class="circuit-node"><div class="circuit-dot"></div></div>
                                 <div class="circuit-node"><div class="circuit-dot"></div></div>
@@ -860,92 +948,47 @@
                                 <div class="circuit-line horizontal"></div>
                                 <div class="circuit-line vertical"></div>
                                 <div class="circuit-line vertical"></div>
-                                <div class="circuit-line vertical"></div>
-                                <div class="circuit-line horizontal"></div>
                                 <div class="circuit-line horizontal"></div>
                                 <div class="circuit-line vertical"></div>
-                                <div class="circuit-line vertical"></div>
-                                <div class="circuit-line vertical"></div>
-                                <div class="circuit-line horizontal"></div>
-                                <div class="circuit-line horizontal"></div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                        <!-- Web Development -->
-                        <div class="bento-item web-dev" data-aos="fade-right">
-                            <div class="feature-icon">🌐</div>
-                            <h3 class="feature-title">Web Development</h3>
-                            <p class="feature-description">Custom website solutions tailored to your business needs</p>
+        <!-- Services Section -->
+        <section id="services" class="section">
+            <div class="container">
+                <h2 class="section-title text-center" data-aos="fade-up">Our Services</h2>
+                <div class="row">
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-card">
+                            <h3>🖥 Website Support & Setup</h3>
                             <ul class="feature-list">
-                                <li>Responsive Design</li>
-                                <li>E-commerce Integration</li>
-                                <li>Content Management Systems</li>
-                                <li>SEO Optimization</li>
+                                <li>Build simple, modern websites</li>
+                                <li>Fix or update existing sites</li>
+                                <li>Set up domains, email, and contact forms</li>
                             </ul>
                         </div>
-
-                        <!-- Social Media Management -->
-                        <div class="bento-item social" data-aos="fade-left">
-                            <div class="feature-icon">📱</div>
-                            <h3 class="feature-title">Social Media Management</h3>
-                            <p class="feature-description">Build and maintain your online presence</p>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-card">
+                            <h3>💻 Tech Help for Small Teams</h3>
                             <ul class="feature-list">
-                                <li>Content Strategy</li>
-                                <li>Community Management</li>
+                                <li>Set up Google Workspace or Office 365</li>
+                                <li>Troubleshoot device or software issues</li>
+                                <li>Basic training and how-to guides</li>
                             </ul>
                         </div>
-
-                        <!-- IT Support -->
-                        <div class="bento-item it-support" data-aos="fade-right">
-                            <div class="feature-icon">🛠️</div>
-                            <h3 class="feature-title">IT Support</h3>
-                            <p class="feature-description">24/7 technical assistance and maintenance</p>
-                        </div>
-
-                        <!-- Digital Marketing -->
-                        <div class="bento-item digital" data-aos="fade-right">
-                            <div class="feature-icon">📈</div>
-                            <h3 class="feature-title">Digital Marketing</h3>
-                            <p class="feature-description">Drive growth through targeted campaigns</p>
-          </div>
-    
-                        <!-- Cloud Solutions -->
-                        <div class="bento-item cloud" data-aos="fade-left">
-                            <div class="feature-icon">☁️</div>
-                            <h3 class="feature-title">Cloud Solutions</h3>
-                            <p class="feature-description">Secure and scalable cloud infrastructure</p>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-card">
+                            <h3>🚀 Digital Presence Support</h3>
                             <ul class="feature-list">
-                                <li>Cloud Migration</li>
-                                <li>Data Backup</li>
-          </ul>
-                        </div>
-
-                        <!-- Business Analytics -->
-                        <div class="bento-item analytics" data-aos="fade-left">
-                            <div class="feature-icon">📊</div>
-                            <h3 class="feature-title">Business Analytics</h3>
-                            <p class="feature-description">Data-driven insights for better decisions</p>
-          </div>
-
-                        <!-- Cybersecurity -->
-                        <div class="bento-item security" data-aos="fade-up">
-                            <div class="feature-icon">🔒</div>
-                            <h3 class="feature-title">Cybersecurity</h3>
-                            <p class="feature-description">Protect your business with advanced security solutions</p>
-                            <ul class="feature-list">
-                                <li>Threat Detection</li>
-                                <li>Security Audits</li>
-                            </ul>
-      </div>
-    
-                        <!-- Tech Consulting -->
-                        <div class="bento-item consulting" data-aos="fade-up">
-                            <div class="feature-icon">💡</div>
-                            <h3 class="feature-title">Tech Consulting</h3>
-                            <p class="feature-description">Strategic technology planning and implementation</p>
-                            <ul class="feature-list">
-                                <li>Digital Transformation</li>
-                                <li>Technology Roadmap</li>
+                                <li>Google Business Profile setup</li>
+                                <li>Social media account support</li>
+                                <li>Help understanding online reviews, SEO basics</li>
                             </ul>
                         </div>
                     </div>
@@ -971,9 +1014,9 @@
                             </div>
                             <button type="submit" class="btn btn-primary w-100">Send Message</button>
                         </form>
-          </div>
-        </div>
-      </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Back to Top Button -->
