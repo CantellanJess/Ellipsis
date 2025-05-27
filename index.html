@@ -305,8 +305,10 @@
                 display: grid;
                 grid-template-columns: repeat(8, 1fr);
                 grid-template-rows: repeat(8, 1fr);
-                gap: 20px;
+                gap: 30px;
                 padding: 40px;
+                transform: translateZ(0);
+                -webkit-transform: translateZ(0);
             }
 
             .circuit-node {
@@ -316,74 +318,69 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                transform: translateZ(0);
+                -webkit-transform: translateZ(0);
             }
 
             .circuit-dot {
-                width: 12px;
-                height: 12px;
+                width: 6px;
+                height: 6px;
                 background: var(--coral-color);
                 border-radius: 50%;
                 position: relative;
                 animation: pulse 2s ease-in-out infinite;
-            }
-
-            .circuit-dot::before {
-                content: '';
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                background: var(--coral-color);
-                border-radius: 50%;
-                animation: expand 2s ease-out infinite;
+                transform: translateZ(0);
+                -webkit-transform: translateZ(0);
             }
 
             .circuit-line {
                 position: absolute;
                 background: var(--mint-color);
-                opacity: 0.4;
+                opacity: 0.8;
                 animation: flow 3s ease-in-out infinite;
+                transform: translateZ(0);
+                -webkit-transform: translateZ(0);
             }
 
             .circuit-line.horizontal {
                 width: 100%;
-                height: 3px;
+                height: 1px;
                 left: 0;
             }
 
             .circuit-line.vertical {
-                width: 3px;
+                width: 1px;
                 height: 100%;
                 top: 0;
             }
 
             .circuit-line.diagonal {
                 width: 141.4%;
-                height: 3px;
+                height: 1px;
                 transform-origin: left center;
             }
 
-            .circuit-line.diagonal.right {
-                transform: rotate(45deg);
-            }
-
-            .circuit-line.diagonal.left {
-                transform: rotate(-45deg);
-            }
-
             @keyframes pulse {
-                0%, 100% { transform: scale(1); opacity: 0.8; }
-                50% { transform: scale(1.2); opacity: 1; }
-            }
-
-            @keyframes expand {
-                0% { transform: scale(1); opacity: 0.5; }
-                100% { transform: scale(3); opacity: 0; }
+                0%, 100% { 
+                    transform: scale(1);
+                    opacity: 1;
+                }
+                50% { 
+                    transform: scale(1.5);
+                    opacity: 0.8;
+                }
             }
 
             @keyframes flow {
-                0% { opacity: 0.2; }
-                50% { opacity: 0.6; }
-                100% { opacity: 0.2; }
+                0% { 
+                    opacity: 0.4;
+                }
+                50% { 
+                    opacity: 0.8;
+                }
+                100% { 
+                    opacity: 0.4;
+                }
             }
 
             /* Update the HTML structure for the animation */
@@ -822,12 +819,94 @@
                 position: relative;
                 height: 100%;
                 min-height: 500px;
-            }
-
-            .about-image-container .circuit-grid {
                 background: rgba(1, 33, 46, 0.3);
                 border-radius: 20px;
-                padding: 2rem;
+                overflow: hidden;
+            }
+
+            .circuit-grid {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                display: grid;
+                grid-template-columns: repeat(8, 1fr);
+                grid-template-rows: repeat(8, 1fr);
+                gap: 30px;
+                padding: 40px;
+                transform: translateZ(0);
+                -webkit-transform: translateZ(0);
+            }
+
+            .circuit-node {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transform: translateZ(0);
+                -webkit-transform: translateZ(0);
+            }
+
+            .circuit-dot {
+                width: 6px;
+                height: 6px;
+                background: var(--coral-color);
+                border-radius: 50%;
+                position: relative;
+                animation: pulse 2s ease-in-out infinite;
+                transform: translateZ(0);
+                -webkit-transform: translateZ(0);
+            }
+
+            .circuit-line {
+                position: absolute;
+                background: var(--mint-color);
+                opacity: 0.8;
+                animation: flow 3s ease-in-out infinite;
+                transform: translateZ(0);
+                -webkit-transform: translateZ(0);
+            }
+
+            .circuit-line.horizontal {
+                width: 100%;
+                height: 1px;
+                left: 0;
+            }
+
+            .circuit-line.vertical {
+                width: 1px;
+                height: 100%;
+                top: 0;
+            }
+
+            .circuit-line.diagonal {
+                width: 141.4%;
+                height: 1px;
+                transform-origin: left center;
+            }
+
+            @keyframes pulse {
+                0%, 100% { 
+                    transform: scale(1);
+                    opacity: 1;
+                }
+                50% { 
+                    transform: scale(1.5);
+                    opacity: 0.8;
+                }
+            }
+
+            @keyframes flow {
+                0% { 
+                    opacity: 0.4;
+                }
+                50% { 
+                    opacity: 0.8;
+                }
+                100% { 
+                    opacity: 0.4;
+                }
             }
 
             @media (max-width: 992px) {
@@ -860,6 +939,65 @@
                 padding: 0;
                 margin: 0;
             }
+
+            /* Text Fill Animation */
+            .text-fill-animation {
+                position: relative;
+                display: inline-block;
+                overflow: hidden;
+            }
+
+            .text-fill-animation::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, var(--primary-color) 0%, #023a4d 100%);
+                animation: textFill 1.5s ease-in-out forwards;
+            }
+
+            .text-fill-animation.delay-1::after {
+                animation-delay: 0.5s;
+            }
+
+            .text-fill-animation.delay-2::after {
+                animation-delay: 1s;
+            }
+
+            @keyframes textFill {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(100%);
+                }
+            }
+
+            /* Update hero content styles */
+            .hero-content h1 {
+                opacity: 0;
+                animation: fadeIn 0.5s ease-out forwards;
+                animation-delay: 0.3s;
+            }
+
+            .hero-content h3 {
+                opacity: 0;
+                animation: fadeIn 0.5s ease-out forwards;
+                animation-delay: 0.6s;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
         </style>
     </head>
     
@@ -890,10 +1028,10 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 hero-content" data-aos="fade-right">
-                        <h1 class="display-3 fw-bold mb-4">Transforming Business Through Technology</h1>
-                        <h3 class="fw-normal mb-4" style="color: var(--accent-color);">Tech Support & Web Services for Small Businesses Ready to Grow</h3>
+                        <h1 class="display-3 fw-bold mb-4 text-fill-animation">Transforming Business Through Technology</h1>
+                        <h3 class="fw-normal mb-4 text-fill-animation delay-1" style="color: var(--accent-color);">Tech Support & Web Services for Small Businesses Ready to Grow</h3>
                         <div class="d-flex gap-3">
-                            <a href="#features" class="btn" style="background-color: var(--accent-color); color: white; padding: 10px 25px; border-radius: 25px; transition: transform 0.3s ease;">Learn more</a>
+                            <a href="#features" class="btn text-fill-animation delay-2" style="background-color: var(--accent-color); color: white; padding: 10px 25px; border-radius: 25px; transition: transform 0.3s ease;">Learn more</a>
                         </div>
                     </div>
                     <div class="col-lg-6" data-aos="fade-left" style="display: flex; align-items: center; min-height: 500px;">
@@ -915,21 +1053,6 @@
                             
                             <h3 class="mb-4" style="color: var(--mint-color);">Our Mission</h3>
                             <p class="mb-4">To empower small businesses with the technology solutions they need to grow and succeed. We believe that every business, regardless of size, deserves access to professional IT support and web services.</p>
-                            
-                            <div class="row mt-5">
-                                <div class="col-6">
-                                    <div class="stat-item text-center">
-                                        <h4 style="color: var(--coral-color); font-size: 2.5rem;">5+</h4>
-                                        <p>Years Experience</p>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="stat-item text-center">
-                                        <h4 style="color: var(--coral-color); font-size: 2.5rem;">100+</h4>
-                                        <p>Happy Clients</p>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="col-lg-6" data-aos="fade-left">
