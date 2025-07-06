@@ -47,9 +47,21 @@
             .nav-link {
                 color: var(--secondary-color) !important;
                 font-weight: 500;
-                padding: 0.5rem 1rem !important;
+                padding: 0.5rem 3rem !important;
                 position: relative;
                 transition: color 0.3s ease;
+                margin: 0 2rem;
+            }
+
+            .nav-link .nav-number {
+                font-size: 0.7rem;
+                font-weight: 300;
+                opacity: 0.6;
+                margin-left: 0.5rem;
+            }
+
+            .navbar-nav {
+                gap: 4rem;
             }
 
             .nav-link::after {
@@ -1011,13 +1023,12 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#solutions">Solutions</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="#home">Home<span class="nav-number">01</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#solutions">Solutions<span class="nav-number">02</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact<span class="nav-number">03</span></a></li>
                     </ul>
-                    <button class="btn btn-primary ms-3">Connect</button>
                 </div>
             </div>
         </nav>
@@ -1025,16 +1036,13 @@
         <!-- Hero Section -->
         <section id="home" class="section hero-section">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 hero-content" data-aos="fade-right">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center hero-content" data-aos="fade-up">
                         <h1 class="display-3 fw-bold mb-4 text-fill-animation">Transforming Business Through Technology</h1>
                         <h3 class="fw-normal mb-4 text-fill-animation delay-1" style="color: var(--accent-color);">Tech Support & Web Services for Small Businesses Ready to Grow</h3>
-                        <div class="d-flex gap-3">
-                            <a href="#features" class="btn text-fill-animation delay-2" style="background-color: var(--accent-color); color: white; padding: 10px 25px; border-radius: 25px; transition: transform 0.3s ease;">Learn more</a>
+                        <div class="d-flex gap-3 justify-content-center">
+                            <a href="#solutions" class="btn text-fill-animation delay-2" style="background-color: var(--accent-color); color: white; padding: 10px 25px; border-radius: 25px; transition: transform 0.3s ease;">Learn more</a>
                         </div>
-                    </div>
-                    <div class="col-lg-6" data-aos="fade-left" style="display: flex; align-items: center; min-height: 500px;">
-                        <img src="images/Animation - 1748379056357.gif" alt="Hero Animation" style="width: 100%; min-height: 400px; max-height: 500px; object-fit: cover; border-radius: 20px; box-shadow: 0 4px 24px rgba(0,0,0,0.3); background: #222; display: block; margin: 0 auto;" />
                     </div>
                 </div>
             </div>
