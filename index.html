@@ -508,150 +508,70 @@
 
             .bento-grid {
                 display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                grid-template-rows: repeat(4, auto);
-                gap: 20px;
-                padding: 20px;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
                 max-width: 1200px;
                 margin: 0 auto;
+                padding: 2rem 0;
             }
 
             .bento-item {
                 background: rgba(255, 255, 255, 0.05);
                 border-radius: 20px;
-                padding: 25px;
+                padding: 2.5rem;
                 transition: all 0.3s ease;
-                position: relative;
-                overflow: hidden;
-                height: 100%;
                 border: 1px solid transparent;
+                backdrop-filter: blur(10px);
+                height: 100%;
+                min-height: 300px;
+                display: flex;
+                flex-direction: column;
             }
 
             .bento-item:hover {
-                transform: translateY(-5px);
+                transform: translateY(-10px);
                 background: rgba(255, 255, 255, 0.08);
                 border-color: var(--mint-color);
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             }
 
-            .bento-item:hover .feature-icon {
-                transform: scale(1.1);
-                color: var(--coral-color);
+            .bento-icon {
+                font-size: 3rem;
+                margin-bottom: 1.5rem;
+                text-align: center;
             }
 
-            .bento-item:hover .feature-title {
+            .bento-title {
                 color: var(--mint-color);
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+                font-weight: 600;
             }
 
-            .bento-item:hover .feature-description {
+            .bento-description {
                 color: var(--secondary-color);
+                font-size: 1.1rem;
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
+                opacity: 0.9;
             }
 
-            .bento-item:hover .feature-list li::before {
-                color: var(--coral-color);
-            }
-
-            .bento-item::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(45deg, transparent, rgba(78, 205, 196, 0.1), transparent);
-                transform: translateX(-100%);
-                transition: transform 0.6s ease;
-            }
-
-            .bento-item:hover::before {
-                transform: translateX(100%);
-            }
-
-            .feature-icon {
-                transition: transform 0.3s ease, color 0.3s ease;
-            }
-
-            .feature-title {
-                transition: color 0.3s ease;
-            }
-
-            .feature-description {
-                transition: color 0.3s ease;
-            }
-
-            /* Position each bento item */
-            .bento-item.web-dev {
-                grid-column: 1 / 3;
-                grid-row: 1 / 2;
-            }
-
-            .bento-item.social {
-                grid-column: 3 / 5;
-                grid-row: 1 / 2;
-            }
-
-            .bento-item.it-support {
-                grid-column: 1 / 2;
-                grid-row: 2 / 3;
-            }
-
-            .bento-item.digital {
-                grid-column: 1 / 2;
-                grid-row: 3 / 4;
-            }
-
-            .bento-item.cloud {
-                grid-column: 4 / 5;
-                grid-row: 2 / 3;
-            }
-
-            .bento-item.analytics {
-                grid-column: 4 / 5;
-                grid-row: 3 / 4;
-            }
-
-            .bento-item.security {
-                grid-column: 1 / 3;
-                grid-row: 4 / 5;
-            }
-
-            .bento-item.consulting {
-                grid-column: 3 / 5;
-                grid-row: 4 / 5;
-            }
-
-            .feature-icon {
-                font-size: 2rem;
-                margin-bottom: 15px;
-                color: var(--mint-color);
-            }
-
-            .feature-title {
-                font-size: 1.5rem;
-                margin-bottom: 10px;
-                color: var(--secondary-color);
-            }
-
-            .feature-description {
-                font-size: 0.9rem;
-                color: var(--secondary-color);
-                opacity: 0.8;
-            }
-
-            .feature-list {
+            .bento-list {
                 list-style: none;
                 padding: 0;
                 margin: 0;
+                flex-grow: 1;
             }
 
-            .feature-list li {
-                margin: 10px 0;
-                padding-left: 20px;
-                position: relative;
+            .bento-list li {
                 color: var(--secondary-color);
+                margin-bottom: 0.8rem;
+                padding-left: 1.5rem;
+                position: relative;
+                font-size: 1rem;
             }
 
-            .feature-list li::before {
+            .bento-list li::before {
                 content: '→';
                 position: absolute;
                 left: 0;
@@ -661,20 +581,6 @@
             @media (max-width: 992px) {
                 .bento-grid {
                     grid-template-columns: repeat(2, 1fr);
-                    grid-template-rows: auto;
-                }
-
-                .features-animation {
-                    grid-column: 1 / 3;
-                    grid-row: 1 / 2;
-                    height: 400px;
-                    min-height: auto;
-                    margin-bottom: 20px;
-                }
-
-                .bento-item {
-                    grid-column: span 1 !important;
-                    grid-row: auto !important;
                 }
             }
 
@@ -682,14 +588,10 @@
                 .bento-grid {
                     grid-template-columns: 1fr;
                 }
-
-                .features-animation {
-                    grid-column: 1;
-                    height: 300px;
-                }
-
+                
                 .bento-item {
-                    grid-column: 1 !important;
+                    min-height: 250px;
+                    padding: 2rem;
                 }
             }
 
@@ -933,13 +835,11 @@
 
             /* Remove all features-related styles */
             .features-container,
-            .bento-grid,
             .features-animation,
             .circuit-grid,
             .circuit-node,
             .circuit-dot,
             .circuit-line,
-            .bento-item,
             .feature-icon,
             .feature-title,
             .feature-description {
@@ -1048,40 +948,45 @@
             </div>
         </section>
 
-        <!-- About Section -->
+        <!-- Solutions Section -->
         <section id="solutions" class="section hero-section">
             <div class="container">
                 <h2 class="section-title text-center" data-aos="fade-up">Solutions</h2>
-                <div class="row align-items-center">
-                    <div class="col-lg-6" data-aos="fade-right">
-                        <div class="about-content">
-                            <h3 class="mb-4" style="color: var(--mint-color);">Who We Are</h3>
-                            <p class="mb-4">At Ellipsis, we help small businesses create or improve their online presence with friendly, affordable tech services. Whether you're just getting started or need to upgrade, we are here to support your goals with no confusing jargon or big price tags.</p>
-                            
-                            <h3 class="mb-4" style="color: var(--mint-color);">Our Mission</h3>
-                            <p class="mb-4">To empower small businesses with the technology solutions they need to grow and succeed. We believe that every business, regardless of size, deserves access to professional IT support and web services.</p>
-                        </div>
+                <div class="bento-grid">
+                    <!-- Services -->
+                    <div class="bento-item services" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bento-icon">🛠️</div>
+                        <h3 class="bento-title">Services</h3>
+                        <p class="bento-description">Comprehensive IT support and web development services tailored for small businesses.</p>
+                        <ul class="bento-list">
+                            <li>Website Support & Setup</li>
+                            <li>Tech Help for Small Teams</li>
+                            <li>Digital Presence Support</li>
+                        </ul>
                     </div>
-                    <div class="col-lg-6" data-aos="fade-left">
-                        <div class="about-image-container">
-                            <div class="circuit-grid" style="height: 500px;">
-                                <!-- Circuit Nodes -->
-                                <div class="circuit-node"><div class="circuit-dot"></div></div>
-                                <div class="circuit-node"><div class="circuit-dot"></div></div>
-                                <div class="circuit-node"><div class="circuit-dot"></div></div>
-                                <div class="circuit-node"><div class="circuit-dot"></div></div>
-                                <div class="circuit-node"><div class="circuit-dot"></div></div>
-                                <div class="circuit-node"><div class="circuit-dot"></div></div>
-                                
-                                <!-- Circuit Lines -->
-                                <div class="circuit-line horizontal"></div>
-                                <div class="circuit-line horizontal"></div>
-                                <div class="circuit-line vertical"></div>
-                                <div class="circuit-line vertical"></div>
-                                <div class="circuit-line horizontal"></div>
-                                <div class="circuit-line vertical"></div>
-                            </div>
-                        </div>
+
+                    <!-- Consulting -->
+                    <div class="bento-item consulting" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bento-icon">💡</div>
+                        <h3 class="bento-title">Consulting</h3>
+                        <p class="bento-description">Strategic technology guidance to help your business make informed decisions.</p>
+                        <ul class="bento-list">
+                            <li>Technology Strategy</li>
+                            <li>Digital Transformation</li>
+                            <li>Process Optimization</li>
+                        </ul>
+                    </div>
+
+                    <!-- Solutions -->
+                    <div class="bento-item solutions" data-aos="fade-up" data-aos-delay="300">
+                        <div class="bento-icon">🚀</div>
+                        <h3 class="bento-title">Solutions</h3>
+                        <p class="bento-description">Custom technology solutions designed to solve your specific business challenges.</p>
+                        <ul class="bento-list">
+                            <li>Custom Web Applications</li>
+                            <li>Cloud Infrastructure</li>
+                            <li>Integration Services</li>
+                        </ul>
                     </div>
                 </div>
             </div>
